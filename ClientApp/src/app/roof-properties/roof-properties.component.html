@@ -1,0 +1,33 @@
+<h1>RoofStock properties</h1>
+
+<p *ngIf="!(roofPosts$ | async)"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">New property</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="roofPosts$">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Address</th>
+      <th>Year Built</th>
+      <th>List Price</th>
+      <th>Monthly Rent</th>
+      <th>Gross Yield % </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let roofPost of roofPosts$">
+      <td><a [routerLink]="['/roofpost/', roofPost.id]">{{ roofPost.id }}</a></td>
+      <td>{{ roofPost.address.address1 }}</td>
+      <td>{{ roofPost.physical.yearBuilt }}</td>
+      <td>{{ roofPost.financial.listPrice | number}}</td>
+      <td>{{ roofPost.financial.monthlyRent | number}}</td>
+      <td>{{ roofPost.financial.monthlyRent*12/roofPost.financial.listPrice | percent }}</td>
+      <td><a [routerLink]="['/roofpost/edit/', roofPost.id]" class="btn btn-primary btn-sm float-right">Edit</a></td>
+      <td><a [routerLink]="" (click)="delete(roofPost.id)" class="btn btn-danger btn-sm float-right">Delete</a></td>
+    </tr>
+  </tbody>
+</table>

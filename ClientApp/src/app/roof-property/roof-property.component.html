@@ -1,0 +1,13 @@
+<p>roof-property works!</p>
+<ng-container *ngIf="(roofPosts$) as roofPost; else loading">
+
+    <h1>{{ roofPost.Address }}</h1>
+    <div>{{ roofPost.YearBuilt }}</div>
+    <ul>
+      <li>{{ roofPost.ListPrice }}</li>
+      <li>{{ roofPost.MonthlyRent }}</li>
+      <li>{{roofPost.GrossYield}}</li>
+    </ul>
+  
+  </ng-container>
+  <ng-template #loading>Loading…</ng-template>
